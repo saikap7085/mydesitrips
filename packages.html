@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>MyDesiTrips - Affordable Travel Packages</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   /* Navbar styles */
+   nav {
+     background-color: #e0f2fe; /* light blue */
+     border-radius: 0.5rem; /* slightly rounded edges */
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* soft shadow */
+     padding-left: 1rem;
+     padding-right: 1rem;
+     padding-top: 0.5rem;
+     padding-bottom: 0.5rem;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     position: sticky;
+     top: 0;
+     z-index: 50;
+   }
+   nav .logo img {
+     height: 3rem;
+     width: 3rem;
+     object-fit: contain;
+   }
+   nav .menu-btn {
+     display: none;
+     background: none;
+     border: none;
+     cursor: pointer;
+     color: #0369a1; /* blue */
+     font-size: 1.5rem;
+     transition: color 0.3s ease;
+   }
+   nav .menu-btn:hover,
+   nav .menu-btn:focus {
+     color: #fb923c; /* soft orange */
+     outline: none;
+   }
+   nav ul {
+     display: flex;
+     gap: 1.5rem;
+     list-style: none;
+     margin: 0;
+     padding: 0;
+   }
+   nav ul li a {
+     text-decoration: none;
+     color: #0369a1; /* blue */
+     font-size: 0.875rem;
+     font-weight: 600;
+     position: relative;
+     padding-bottom: 0.25rem;
+     transition: color 0.3s ease;
+   }
+   nav ul li a::after {
+     content: "";
+     position: absolute;
+     width: 0%;
+     height: 2px;
+     bottom: 0;
+     left: 0;
+     background-color: #fb923c; /* soft orange */
+     transition: width 0.3s ease;
+     border-radius: 1px;
+   }
+   nav ul li a:hover,
+   nav ul li a:focus {
+     color: #fb923c; /* soft orange */
+     outline: none;
+   }
+   nav ul li a:hover::after,
+   nav ul li a:focus::after {
+     width: 100%;
+   }
+   nav ul li a.font-semibold.text-orange-500 {
+     color: #fb923c;
+   }
+   /* Responsive navbar */
+   @media (max-width: 767px) {
+     nav .menu-btn {
+       display: block;
+     }
+     nav ul {
+       width: 100%;
+       flex-direction: column;
+       gap: 0;
+       display: none;
+       margin-top: 0.5rem;
+       border-top: 1px solid #bae6fd;
+       padding-top: 0.5rem;
+       background-color: #e0f2fe;
+       border-radius: 0 0 0.5rem 0.5rem;
+     }
+     nav ul.show {
+       display: flex;
+     }
+     nav ul li {
+       padding: 0.5rem 0;
+       text-align: center;
+     }
+   }
+   /* Package card styles */
+   .package-card {
+     background-color: #f0f8ff; /* light blue */
+     border-radius: 0.5rem;
+     box-shadow: 0 4px 6px rgba(251, 146, 60, 0.15); /* soft orange shadow */
+     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+     display: flex;
+     flex-direction: column;
+     padding: 1rem;
+     border: 1px solid transparent;
+     cursor: pointer;
+     outline-offset: 4px;
+   }
+   .package-card:hover,
+   .package-card:focus-within {
+     transform: scale(1.04);
+     box-shadow: 0 8px 14px rgba(251, 146, 60, 0.3);
+     border-color: #fb923c;
+     outline: none;
+   }
+   .package-card:focus-visible {
+     outline: 3px solid #fb923c;
+     outline-offset: 4px;
+   }
+   .package-image {
+     border-radius: 0.5rem;
+     width: 100%;
+     height: 180px;
+     object-fit: cover;
+     margin-bottom: 1rem;
+     transition: transform 0.3s ease;
+   }
+   .package-card:hover .package-image,
+   .package-card:focus-within .package-image {
+     transform: scale(1.05);
+   }
+   .package-title {
+     color: #1e3a8a; /* dark blue */
+     font-weight: 700;
+     font-size: 1.3rem;
+     margin-bottom: 0.5rem;
+   }
+   .package-overview {
+     color: #475569; /* slate gray */
+     font-size: 1rem;
+     margin-bottom: 0.75rem;
+     line-height: 1.4;
+   }
+   .package-highlights {
+     font-size: 0.95rem;
+     margin-bottom: 0.75rem;
+     color: #334155;
+     font-weight: 600;
+   }
+   .package-duration,
+   .package-price {
+     font-weight: 700;
+     color: #fb923c; /* soft orange */
+     margin-bottom: 0.5rem;
+     font-size: 1rem;
+   }
+   .package-includes {
+     font-size: 0.9rem;
+     color: #475569;
+     margin-bottom: 1rem;
+   }
+   .package-button {
+     background-color: #fb923c;
+     color: white;
+     font-weight: 700;
+     padding: 0.6rem 1.25rem;
+     border-radius: 0.375rem;
+     border: none;
+     cursor: pointer;
+     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+     align-self: start;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     box-shadow: 0 3px 8px rgba(251, 146, 60, 0.4);
+   }
+   .package-button:hover,
+   .package-button:focus {
+     background-color: #f97316;
+     outline: none;
+     box-shadow: 0 6px 16px rgba(249, 115, 22, 0.6);
+   }
+   /* Section headers */
+   h2.section-header {
+     font-size: 1.75rem;
+     font-weight: 700;
+     color: #1e3a8a;
+     margin-bottom: 1.5rem;
+     border-bottom: 3px solid #fb923c;
+     display: inline-block;
+     padding-bottom: 0.25rem;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   }
+   /* Responsive grid */
+   .packages-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+     gap: 2rem;
+   }
+   /* Visual icons style */
+   .category-icon {
+     font-size: 1.8rem;
+     color: #fb923c;
+     margin-right: 0.5rem;
+   }
+   body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background-color: white;
+     color: #334155;
+     min-height: 100vh;
+     display: flex;
+     flex-direction: column;
+   }
+   main {
+     flex-grow: 1;
+     max-width: 1100px;
+     margin: 2rem auto 4rem;
+     padding: 0 1rem;
+   }
+   footer {
+     background-color: #1e293b;
+     color: white;
+     text-align: center;
+     font-size: 0.8rem;
+     padding: 1rem 1rem;
+     box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+   }
+  </style>
+ </head>
+ <body>
+  <!-- Navbar -->
+  <nav>
+   <div class="logo">
+    <a href="index.html" aria-label="MyDesiTrips Home">
+     <img alt="MyDesiTrips logo with blue and white background and text" src="logo.png"/>
+    </a>
+   </div>
+   <button aria-label="Toggle menu" class="menu-btn" id="menu-btn" type="button">
+    <i class="fas fa-bars"></i>
+   </button>
+   <ul id="menu" class="flex items-center">
+    <li><a href="index.html">Home</a></li>
+    <li><a class="font-semibold text-orange-500" href="packages.html">Packages</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li class="relative ml-4">
+      <button id="login-btn" aria-haspopup="true" aria-expanded="false" aria-controls="login-menu" class="text-blue-700 font-semibold hover:text-orange-500 focus:text-orange-500 focus:outline-none flex items-center gap-2">
+        <a href="log.html" class="flex items-center gap-2">
+          <span id="login-text">Login / Signup</span>
+          <i class="fas fa-user-circle fa-lg"></i>
+        </a>
+      </button>
+      <div id="login-menu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg z-50" role="menu" aria-label="User menu">
+        <div id="user-info" class="hidden p-4 text-gray-700">
+          <img id="profile-pic" src="" alt="Profile Picture" class="w-10 h-10 rounded-full mx-auto mb-2"/>
+          <p id="user-name" class="text-center font-semibold"></p>
+          <button id="logout-btn" class="w-full mt-2 bg-orange-500 hover:bg-orange-600 text-white py-1 rounded" role="menuitem">Logout</button>
+        </div>
+        <div id="login-signup-links" class="p-2">
+          <a href="log.html" class="block px-4 py-2 text-blue-700 hover:bg-orange-100 rounded" role="menuitem">Login</a>
+          <a href="log.html" class="block px-4 py-2 text-blue-700 hover:bg-orange-100 rounded" role="menuitem">Signup</a>
+        </div>
+      </div>
+    </li>
+   </ul>
+  </nav>
+  <main>
+   <!-- Beach Escapes -->
+   <section class="mb-16" aria-label="Beach Escapes">
+    <h2 class="section-header flex items-center">
+     <span class="category-icon" aria-hidden="true">🏖️</span>
+     Beach Escapes
+    </h2>
+    <div class="packages-grid">
+     <!-- Andaman Island Adventure -->
+     <article class="package-card" tabindex="0" role="article" aria-label="Andaman Island Adventure package">
+      <img alt="Andaman Island Adventure scenic beach and snorkeling" class="package-image" height="180" loading="lazy" src="https://storage.googleapis.com/a1aa/image/46aa0975-ddf7-4d36-b62c-d11bade60229.jpg" width="400"/>
+      <h3 class="package-title">Andaman Island Adventure</h3>
+      <p class="package-overview">Explore the pristine beaches and vibrant marine life of the Andaman Islands. Unique snorkeling experiences and historical sites await.</p>
+      <p class="package-highlights">Highlights: Snorkeling at Elephant Beach, Radhanagar Beach, Cellular Jail visit</p>
+      <p class="package-duration">Duration: 5 Days / 4 Nights</p>
+      <p class="package-price">Price: ₹21,000 per adult</p>
+      <p class="package-includes">Includes accommodation, meals, local transport, and guided tours.</p>
+      <button aria-label="Book Andaman Island Adventure package" class="package-button" type="button">Book Now</button>
+     </article>
+     <!-- Goa Weekend Getaway -->
+     <article class="package-card" tabindex="0" role="article" aria-label="Goa Weekend Getaway package">
+      <img alt="Goa beach with nightlife and water sports" class="package-image" height="180" loading="lazy" src="https://storage.googleapis.com/a1aa/image/1d2b5901-d1c1-4693-4bf6-fe491f61bdeb.jpg" width="400"/>
+      <h3 class="package-title">Goa Weekend Getaway</h3>
+      <p class="package-overview">Enjoy beach hopping, vibrant nightlife, and thrilling water sports in Goa’s lively coastal atmosphere.</p>
+      <p class="package-highlights">Highlights: Beach hopping, nightlife, water sports</p>
+      <p class="package-duration">Duration: 3 Nights / 4 Days</p>
+      <p class="package-price">Price: ₹15,000 per adult</p>
+      <p class="package-includes">Includes accommodation, breakfast, airport transfers, and water sports activities.</p>
+      <button aria-label="Book Goa Weekend Getaway package" class="package-button" type="button">Book Now</button>
+     </article>
+    </div>
+   </section>
+   <!-- Mountain Retreats -->
+   <section class="mb-16" aria-label="Mountain Retreats">
+    <h2 class="section-header flex items-center">
+     <span class="category-icon" aria-hidden="true">🏔️</span>
+     Mountain Retreats
+    </h2>
+    <div class="packages-grid">
+     <!-- Shimla & Manali Explorer -->
+     <article class="package-card" tabindex="0" role="article" aria-label="Shimla & Manali Explorer package">
+      <img alt="Shimla Mall Road and Manali mountain views" class="package-image" height="180" loading="lazy" src="https://storage.googleapis.com/a1aa/image/90c41327-07f8-45ff-72a4-4113bbed933b.jpg" width="400"/>
+      <h3 class="package-title">Shimla &amp; Manali Explorer</h3>
+      <p class="package-overview">Discover the scenic beauty and cool mountain air of Shimla and Manali with visits to famous valleys and passes.</p>
+      <p class="package-highlights">Highlights: Mall Road, Solang Valley, Rohtang Pass</p>
+      <p class="package-duration">Duration: 5 Nights / 6 Days</p>
+      <p class="package-price">Price: ₹17,000 per adult</p>
+      <p class="package-includes">Includes accommodation, local transport, sightseeing tours, and breakfast.</p>
+      <button aria-label="Book Shimla &amp; Manali Explorer package" class="package-button" type="button">Book Now</button>
+     </article>
+     <!-- Leh-Ladakh Adventure -->
+     <article class="package-card" tabindex="0" role="article" aria-label="Leh-Ladakh Adventure package">
+      <img alt="Leh-Ladakh landscape with Pangong Lake and camel safari" class="package-image" height="180" loading="lazy" src="https://storage.googleapis.com/a1aa/image/29ec4ba2-532d-4dce-2355-822f9f4846d6.jpg" width="400"/>
+      <h3 class="package-title">Leh-Ladakh Adventure</h3>
+      <p class="package-overview">Experience the rugged beauty of Ladakh with high mountain passes, camel safaris, and stunning lakes.</p>
+      <p class="package-highlights">Highlights: Khardung La Pass, camel safari, Pangong Lake</p>
+      <p class="package-duration">Duration: 6 Days / 5 Nights</p>
+      <p class="package-price">Price: ₹22,500 per adult</p>
+      <p class="package-includes">Includes accommodation, local transport, permits, and guided tours.</p>
+      <button aria-label="Book Leh-Ladakh Adventure package" class="package-button" type="button">Book Now</button>
+     </article>
+    </div>
+   </section>
+   <!-- Cultural Journeys -->
+   <section class="mb-16" aria-label="Cultural Journeys">
+    <h2 class="section-header flex items-center">
+     <span class="category-icon" aria-hidden="true">🕌</span>
+     Cultural Journeys
+    </h2>
+    <div class="packages-grid">
+     <!-- Golden Triangle Tour -->
+     <article class="package-card" tabindex="0" role="article" aria-label="Golden Triangle Tour package">
+      <img alt="Taj Mahal, Amber Fort, and Qutub Minar" class="package-image" height="180" loading="lazy" src="https://storage.googleapis.com/a1aa/image/f89310bb-aaed-419c-33fc-4f806b4c8900.jpg" width="400"/>
+      <h3 class="package-title">Golden Triangle Tour</h3>
+      <p class="package-overview">Explore India’s rich history and architecture with visits to Delhi, Agra, and Jaipur.</p>
+      <p class="package-highlights">Highlights: Taj Mahal, Amber Fort, Qutub Minar</p>
+      <p class="package-duration">Duration: 6 Nights / 7 Days</p>
+      <p class="package-price">Price: ₹20,000 per adult</p>
+      <p class="package-includes">Includes accommodation, transport, guided tours, and some meals.</p>
+      <button aria-label="Book Golden Triangle Tour package" class="package-button" type="button">Book Now</button>
+     </article>
+     <!-- Rajasthan Heritage Trail -->
+     <article class="package-card" tabindex="0" role="article" aria-label="Rajasthan Heritage Trail package">
+      <img alt="City Palace, Mehrangarh Fort, Lake Pichola" class="package-image" height="180" loading="lazy" src="https://storage.googleapis.com/a1aa/image/cd118751-7010-4077-11e9-5a34fafa38d9.jpg" width="400"/>
+      <h3 class="package-title">Rajasthan Heritage Trail</h3>
+      <p class="package-overview">Discover the royal heritage and stunning palaces of Jaipur, Jodhpur, and Udaipur.</p>
+      <p class="package-highlights">Highlights: City Palace, Mehrangarh Fort, Lake Pichola</p>
+      <p class="package-duration">Duration: 7 Nights / 8 Days</p>
+      <p class="package-price">Price: ₹22,000 per adult</p>
+      <p class="package-includes">Includes accommodation, transport, sightseeing, and select meals.</p>
+      <button aria-label="Book Rajasthan Heritage Trail package" class="package-button" type="button">Book Now</button>
+     </article>
+    </div>
+   </section>
+   <!-- Nature & Wellness -->
+   <section class="mb-16" aria-label="Nature and Wellness">
+    <h2 class="section-header flex items-center">
+     <span class="category-icon" aria-hidden="true">🌿</span>
+     Nature &amp; Wellness
+    </h2>
+    <div class="packages-grid">
+     <!-- Kerala Backwaters Retreat -->
+     <article class="package-card" tabindex="0" role="article" aria-label="Kerala Backwaters Retreat package">
+      <img alt="Houseboat on Kerala backwaters and tea plantations" class="package-image" height="180" loading="lazy" src="https://storage.googleapis.com/a1aa/image/9c7859b5-4880-4d63-6c4b-bf7f15d632d6.jpg" width="400"/>
+      <h3 class="package-title">Kerala Backwaters Retreat</h3>
+      <p class="package-overview">Relax with a houseboat stay, explore tea plantations, and enjoy Ayurvedic spa treatments.</p>
+      <p class="package-highlights">Highlights: Tea plantations, houseboat stay, Ayurvedic spa</p>
+      <p class="package-duration">Duration: 4 Days / 3 Nights</p>
+      <p class="package-price">Price: ₹18,000 per adult</p>
+      <p class="package-includes">Includes accommodation, houseboat, meals, and spa sessions.</p>
+      <button aria-label="Book Kerala Backwaters Retreat package" class="package-button" type="button">Book Now</button>
+     </article>
+     <!-- Sikkim Silk Route Expedition -->
+     <article class="package-card" tabindex="0" role="article" aria-label="Sikkim Silk Route Expedition package">
+      <img alt="Panoramic Himalayan views along the Old Silk Route" class="package-image" height="180" loading="lazy" src="https://storage.googleapis.com/a1aa/image/3e2bfaa7-461c-4031-ff49-35cf96aa1ebe.jpg" width="400"/>
+      <h3 class="package-title">Sikkim Silk Route Expedition</h3>
+      <p class="package-overview">Journey through the historic Silk Route with breathtaking Himalayan panoramas.</p>
+      <p class="package-highlights">Highlights: Old Silk Route, panoramic Himalayan views</p>
+      <p class="package-duration">Duration: 6 Days / 5 Nights</p>
+      <p class="package-price">Price: ₹20,000 per adult</p>
+      <p class="package-includes">Includes accommodation, transport, guided trekking, and meals.</p>
+      <button aria-label="Book Sikkim Silk Route Expedition package" class="package-button" type="button">Book Now</button>
+     </article>
+    </div>
+   </section>
+   <!-- Wildlife Safaris -->
+   <section class="mb-16" aria-label="Wildlife Safaris">
+    <h2 class="section-header flex items-center">
+     <span class="category-icon" aria-hidden="true">🐅</span>
+     Wildlife Safaris
+    </h2>
+    <div class="packages-grid">
+     <!-- Jim Corbett National Park Safari -->
+     <article class="package-card" tabindex="0" role="article" aria-label="Jim Corbett National Park Safari package">
+      <img alt="Jeep safari and wildlife spotting in Jim Corbett National Park" class="package-image" height="180" loading="lazy" src="https://storage.googleapis.com/a1aa/image/6f7ff728-b25e-4456-4102-670e2b3eb72f.jpg" width="400"/>
+      <h3 class="package-title">Jim Corbett National Park Safari</h3>
+      <p class="package-overview">Experience thrilling jeep safaris and nature walks in India’s oldest national park.</p>
+      <p class="package-highlights">Highlights: Jeep safari, wildlife spotting, nature walks</p>
+      <p class="package-duration">Duration: 3 Days / 2 Nights</p>
+      <p class="package-price">Price: ₹12,000 per adult</p>
+      <p class="package-includes">Includes accommodation, jeep safari, meals, and park entry fees.</p>
+      <button aria-label="Book Jim Corbett National Park Safari package" class="package-button" type="button">Book Now</button>
+     </article>
+     <!-- Kaziranga National Park Adventure -->
+     <article class="package-card" tabindex="0" role="article" aria-label="Kaziranga National Park Adventure package">
+      <img alt="One-horned rhinoceros and elephant safari in Kaziranga National Park" class="package-image" height="180" loading="lazy" src="https://storage.googleapis.com/a1aa/image/d8cbb8f4-5aee-426b-47df-a25168fe6054.jpg" width="400"/>
+      <h3 class="package-title">Kaziranga National Park Adventure</h3>
+      <p class="package-overview">Spot the famous one-horned rhinoceros and enjoy elephant safaris and bird watching.</p>
+      <p class="package-highlights">Highlights: One-horned rhinoceros, elephant safari, bird watching</p>
+      <p class="package-duration">Duration: 4 Days / 3 Nights</p>
+      <p class="package-price">Price: ₹16,000 per adult</p>
+      <p class="package-includes">Includes accommodation, safaris, meals, and park permits.</p>
+      <button aria-label="Book Kaziranga National Park Adventure package" class="package-button" type="button">Book Now</button>
+     </article>
+    </div>
+   </section>
+  </main>
+  <!-- Footer -->
+  <footer>
+   © 2023 MyDesiTrips. All Rights Reserved.
+  </footer>
+  <script>
+   const menuBtn = document.getElementById("menu-btn");
+   const menu = document.getElementById("menu");
+   menuBtn.addEventListener("click", () => {
+     menu.classList.toggle("show");
+   });
+  </script>
+ </body>
+</html>

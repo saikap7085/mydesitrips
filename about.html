@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>MyDesiTrips - About Us</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+   /* Custom styles for team member hover/focus */
+   .team-member:hover,
+   .team-member:focus-within {
+     box-shadow: 0 8px 20px rgba(251, 146, 60, 0.4);
+     outline: none;
+     transform: translateY(-5px);
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+   .stat-item span {
+     color: #1e3a8a;
+   }
+   .btn-primary {
+     background-color: #fb923c;
+     color: white;
+     padding: 0.75rem 2rem;
+     font-weight: 700;
+     border: none;
+     border-radius: 0.375rem;
+     cursor: pointer;
+     font-size: 1.1rem;
+     text-decoration: none;
+     display: inline-block;
+     transition: background-color 0.3s ease;
+   }
+   .btn-primary:hover,
+   .btn-primary:focus {
+     background-color: #f97316;
+     outline: none;
+   }
+  </style>
+ </head>
+ <body class="bg-white text-gray-900 font-sans min-h-screen flex flex-col">
+  <!-- Navbar -->
+  <nav class="bg-blue-100 sticky top-0 z-50 rounded-b-md shadow-md px-4 py-2 flex flex-wrap items-center justify-between">
+   <div class="logo">
+    <a href="index.html" aria-label="MyDesiTrips Home">
+     <img alt="MyDesiTrips logo with blue and white background and text" src="logo.png" class="h-12 w-12 object-contain"/>
+    </a>
+   </div>
+   <button aria-label="Toggle menu" class="menu-btn text-blue-700 text-2xl md:hidden" id="menu-btn" type="button">
+    <i class="fas fa-bars"></i>
+   </button>
+   <ul id="menu" class="hidden md:flex gap-6 list-none m-0 p-0 items-center">
+    <li><a href="index.html" class="text-blue-700 font-semibold hover:text-orange-500 focus:text-orange-500 focus:outline-none">Home</a></li>
+    <li><a href="packages.html" class="text-blue-700 font-semibold hover:text-orange-500 focus:text-orange-500 focus:outline-none">Packages</a></li>
+    <li><a href="contact.html" class="text-blue-700 font-semibold hover:text-orange-500 focus:text-orange-500 focus:outline-none">Contact</a></li>
+    <li><a href="about.html" class="text-orange-500 font-bold" aria-current="page">About Us</a></li>
+    <li class="relative ml-4">
+      <button id="login-btn" aria-haspopup="true" aria-expanded="false" aria-controls="login-menu" class="text-blue-700 font-semibold hover:text-orange-500 focus:text-orange-500 focus:outline-none flex items-center gap-2">
+        <a href="log.html" class="flex items-center gap-2">
+          <span id="login-text">Login / Signup</span>
+          <i class="fas fa-user-circle fa-lg"></i>
+        </a>
+      </button>
+      <div id="login-menu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg z-50" role="menu" aria-label="User menu">
+        <div id="user-info" class="hidden p-4 text-gray-700">
+          <img id="profile-pic" src="" alt="Profile Picture" class="w-10 h-10 rounded-full mx-auto mb-2"/>
+          <p id="user-name" class="text-center font-semibold"></p>
+          <button id="logout-btn" class="w-full mt-2 bg-orange-500 hover:bg-orange-600 text-white py-1 rounded" role="menuitem">Logout</button>
+        </div>
+        <div id="login-signup-links" class="p-2">
+          <a href="log.html" class="block px-4 py-2 text-blue-700 hover:bg-orange-100 rounded" role="menuitem">Login</a>
+          <a href="log.html" class="block px-4 py-2 text-blue-700 hover:bg-orange-100 rounded" role="menuitem">Signup</a>
+        </div>
+      </div>
+    </li>
+   </ul>
+  </nav>
+  <main class="max-w-7xl mx-auto px-4 py-10 flex-grow">
+   <!-- Hero Section -->
+   <section aria-label="Discover the World with Us hero section" class="bg-cover bg-center text-white text-center py-24 rounded-lg shadow-lg mb-12" style="background-image: url('banner.jpg');">
+    <h1 class="text-4xl font-extrabold drop-shadow-lg mb-2">Discover the World with Us</h1>
+    <p class="text-xl font-bold drop-shadow-md max-w-xl mx-auto text-orange-500">
+      At MyDesiTrips, our mission is to inspire and empower your journey to unforgettable adventures.
+    </p>
+    
+   </section>
+   <!-- Our Story -->
+   <section aria-labelledby="our-story-title" class="mb-12">
+    <h2 id="our-story-title" class="text-3xl font-bold text-blue-900 border-b-4 border-orange-400 inline-block pb-1 mb-6">Our Story</h2>
+    <p class="max-w-3xl text-gray-700 mb-4 leading-relaxed">MyDesiTrips was born from a passion for exploration and a desire to make travel accessible to everyone. Founded by a group of avid travelers, our journey began with a simple idea: to create personalized, authentic travel experiences that connect people with the heart of every destination.</p>
+    <p class="max-w-3xl text-gray-700 leading-relaxed">Over the years, we've grown into a trusted travel partner, crafting journeys that blend adventure, culture, and comfort. Our story is one of dedication, discovery, and the joy of sharing the world’s wonders with you.</p>
+   </section>
+   <!-- Our Mission & Vision -->
+   <section aria-labelledby="mission-vision-title" class="mb-12">
+    <h2 id="mission-vision-title" class="text-3xl font-bold text-blue-900 border-b-4 border-orange-400 inline-block pb-1 mb-6">Our Mission &amp; Vision</h2>
+    <p class="max-w-3xl text-gray-700 mb-4 leading-relaxed">Our mission is to make travel accessible, adventurous, and safe for all. We believe every journey should be a story worth telling, filled with meaningful experiences and lasting memories.</p>
+    <p class="max-w-3xl text-gray-700 leading-relaxed">Our vision is to be the world’s most trusted travel companion, inspiring wanderlust and fostering connections across cultures through responsible and innovative travel solutions.</p>
+   </section>
+   <!-- What Makes Us Different -->
+   <section aria-labelledby="difference-title" class="mb-12">
+    <h2 id="difference-title" class="text-3xl font-bold text-blue-900 border-b-4 border-orange-400 inline-block pb-1 mb-8">What Makes Us Different</h2>
+    <div class="flex flex-wrap gap-6 justify-between max-w-5xl mx-auto">
+     <div tabindex="0" class="difference-item bg-blue-50 p-6 rounded-lg shadow-md flex-1 min-w-[250px] text-center font-semibold text-blue-900">
+      <strong class="block mb-2 text-xl">Local Expertise</strong>
+      <p class="text-gray-700 font-normal">Our team’s deep knowledge of destinations ensures authentic experiences beyond the usual tourist paths.</p>
+     </div>
+     <div tabindex="0" class="difference-item bg-blue-50 p-6 rounded-lg shadow-md flex-1 min-w-[250px] text-center font-semibold text-blue-900">
+      <strong class="block mb-2 text-xl">24/7 Support</strong>
+      <p class="text-gray-700 font-normal">We’re here for you anytime, anywhere, providing peace of mind throughout your journey.</p>
+     </div>
+     <div tabindex="0" class="difference-item bg-blue-50 p-6 rounded-lg shadow-md flex-1 min-w-[250px] text-center font-semibold text-blue-900">
+      <strong class="block mb-2 text-xl">Custom Itineraries</strong>
+      <p class="text-gray-700 font-normal">Every trip is tailored to your interests, pace, and budget, making your adventure truly yours.</p>
+     </div>
+    </div>
+   </section>
+   <!-- Meet the Team -->
+   <section aria-labelledby="team-title" class="mb-12">
+    <h2 id="team-title" class="text-3xl font-bold text-blue-900 border-b-4 border-orange-400 inline-block pb-1 mb-8">Meet the Team</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
+     <article tabindex="0" class="team-member bg-blue-50 p-6 rounded-lg shadow-sm text-center transition-transform duration-300">
+      <img alt="Alex Johnson, Founder & CEO" src="https://storage.googleapis.com/a1aa/image/dd9febd0-b466-44cf-425a-1afba0dcce65.jpg" class="mx-auto rounded-full w-36 h-36 object-cover mb-4" />
+      <h3 class="text-xl font-bold text-blue-900 mb-1">Shubham Kumar</h3>
+      <p class="italic text-gray-600">"Travel is the only thing you buy that makes you richer."</p>
+     </article>
+     <article tabindex="0" class="team-member bg-blue-50 p-6 rounded-lg shadow-sm text-center transition-transform duration-300">
+      <img alt="Priya Singh, Head of Operations" src="https://storage.googleapis.com/a1aa/image/a23ab69c-2b52-40dd-04bb-76fbf16ad322.jpg" class="mx-auto rounded-full w-36 h-36 object-cover mb-4" />
+      <h3 class="text-xl font-bold text-blue-900 mb-1">Ravleen Kour</h3>
+      <p class="italic text-gray-600">"Passionate about crafting seamless journeys and unforgettable memories."</p>
+     </article>
+     <article tabindex="0" class="team-member bg-blue-50 p-6 rounded-lg shadow-sm text-center transition-transform duration-300">
+      <img alt="David Lee, Travel Consultant" src="https://storage.googleapis.com/a1aa/image/539cd968-2018-4bd0-5e36-e0ca1f017df0.jpg" class="mx-auto rounded-full w-36 h-36 object-cover mb-4" />
+      <h3 class="text-xl font-bold text-blue-900 mb-1">KC</h3>
+      <p class="italic text-gray-600">"Your adventure architect, designing trips with heart and soul."</p>
+     </article>
+     <article tabindex="0" class="team-member bg-blue-50 p-6 rounded-lg shadow-sm text-center transition-transform duration-300">
+      <img alt="Sara Patel, Customer Support" src="https://storage.googleapis.com/a1aa/image/099ecf1d-322f-45b0-4525-4edcfaf2758c.jpg" class="mx-auto rounded-full w-36 h-36 object-cover mb-4" />
+      <h3 class="text-xl font-bold text-blue-900 mb-1">Chomi</h3>
+      <p class="italic text-gray-600">"Here to help you every step of the way, 24/7."</p>
+     </article>
+    </div>
+   </section>
+   <!-- Stats Section -->
+   <section aria-label="Company statistics" class="mb-12">
+    <div class="flex flex-wrap justify-around gap-8 max-w-5xl mx-auto text-center">
+     <div tabindex="0" class="stat-item font-bold text-orange-400 text-lg">
+      <span class="block text-5xl text-blue-900">5000+</span>
+      Happy Travelers
+     </div>
+     <div tabindex="0" class="stat-item font-bold text-orange-400 text-lg">
+      <span class="block text-5xl text-blue-900">10+</span>
+      Years of Experience
+     </div>
+     <div tabindex="0" class="stat-item font-bold text-orange-400 text-lg">
+      <span class="block text-5xl text-blue-900">100+</span>
+      Destinations Worldwide
+     </div>
+     <div tabindex="0" class="stat-item font-bold text-orange-400 text-lg">
+      <span class="block text-5xl text-blue-900">24/7</span>
+      Customer Support
+     </div>
+    </div>
+   </section>
+   <!-- Call to Action -->
+   <section aria-label="Call to action" class="text-center mb-12">
+    <p class="text-xl text-blue-900 mb-6 max-w-xl mx-auto">Ready to start your next adventure? Explore our trips or contact us for a custom tour plan tailored just for you.</p>
+    <a href="packages.html" role="button" class="btn-primary mr-4 mb-4 inline-block">Explore Trips</a>
+    <a href="contact.html" role="button" class="btn-primary mb-4 inline-block">Contact Us</a>
+   </section>
+  </main>
+  <footer class="bg-blue-900 text-white text-center py-4 text-sm font-sans">
+   © 2023 MyDesiTrips. All Rights Reserved.
+  </footer>
+  <script>
+   const menuBtn = document.getElementById('menu-btn');
+   const menu = document.getElementById('menu');
+   menuBtn.addEventListener('click', () => {
+     menu.classList.toggle('hidden');
+   });
+  </script>
+ </body>
+</html>
