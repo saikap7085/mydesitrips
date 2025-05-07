@@ -79,29 +79,35 @@
     nav ul li a.font-semibold.text-orange-500 {
       color: #fb923c;
     }
-    @media (max-width: 767px) {
-      nav .menu-btn {
-        display: block;
-      }
-      nav ul {
-        width: 100%;
-        flex-direction: column;
-        gap: 0;
-        display: none;
-        margin-top: 0.5rem;
-        border-top: 1px solid #bae6fd;
-        padding-top: 0.5rem;
-        background-color: #e0f2fe;
-        border-radius: 0 0 0.5rem 0.5rem;
-      }
-      nav ul.show {
-        display: flex;
-      }
-      nav ul li {
-        padding: 0.5rem 0;
-        text-align: center;
-      }
-    }
+   /* Responsive */
+   @media (max-width: 767px) {
+     nav .menu-btn {
+       display: block;
+     }
+     nav ul {
+       width: 100%;
+       flex-direction: column;
+       gap: 0;
+       display: none;
+       max-height: 0;
+       overflow: hidden;
+       margin-top: 0.5rem;
+       border-top: 1px solid #bae6fd;
+       padding-top: 0.5rem;
+       background-color: #e0f2fe;
+       border-radius: 0 0 0.5rem 0.5rem;
+       transition: max-height 0.3s ease;
+     }
+     nav ul.show {
+       display: flex;
+       max-height: 500px; /* enough to show all items */
+       overflow: visible;
+     }
+     nav ul li {
+       padding: 0.5rem 0;
+       text-align: center;
+     }
+   }
     /* Container for form and details side by side */
     .contact-container {
       max-width: 900px;

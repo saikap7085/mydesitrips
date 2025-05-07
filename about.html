@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
+  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <title>MyDesiTrips - About Us</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <style>
    /* Custom styles for team member hover/focus */
    .team-member:hover,
@@ -35,24 +36,130 @@
      background-color: #f97316;
      outline: none;
    }
+
+   /* Navbar styles from index.html */
+   nav {
+     background-color: #e0f2fe; /* light blue */
+     border-radius: 0.5rem; /* slightly rounded edges */
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* soft shadow */
+     padding-left: 1rem;
+     padding-right: 1rem;
+     padding-top: 0.5rem;
+     padding-bottom: 0.5rem;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     position: sticky;
+     top: 0;
+     z-index: 50;
+   }
+   nav .logo img {
+     height: 3rem;
+     width: 3rem;
+     object-fit: contain;
+   }
+   nav .menu-btn {
+     display: none;
+     background: none;
+     border: none;
+     cursor: pointer;
+     color: #0369a1; /* blue */
+     font-size: 1.5rem;
+     transition: color 0.3s ease;
+   }
+   nav .menu-btn:hover {
+     color: #fb923c; /* soft orange */
+   }
+   nav ul {
+     display: flex;
+     gap: 1.5rem;
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     max-height: none;
+     overflow: visible;
+     transition: none;
+   }
+   nav ul li a {
+     text-decoration: none;
+     color: #0369a1; /* blue */
+     font-size: 0.875rem;
+     font-weight: 600;
+     position: relative;
+     padding-bottom: 0.25rem;
+     transition: color 0.3s ease;
+   }
+   nav ul li a::after {
+     content: "";
+     position: absolute;
+     width: 0%;
+     height: 2px;
+     bottom: 0;
+     left: 0;
+     background-color: #fb923c; /* soft orange */
+     transition: width 0.3s ease;
+     border-radius: 1px;
+   }
+   nav ul li a:hover,
+   nav ul li a:focus {
+     color: #fb923c; /* soft orange */
+     outline: none;
+   }
+   nav ul li a:hover::after,
+   nav ul li a:focus::after {
+     width: 100%;
+   }
+   nav ul li a.font-semibold.text-orange-500 {
+     color: #fb923c;
+   }
+   /* Responsive */
+   @media (max-width: 767px) {
+     nav .menu-btn {
+       display: block;
+     }
+     nav ul {
+       width: 100%;
+       flex-direction: column;
+       gap: 0;
+       display: none;
+       max-height: 0;
+       overflow: hidden;
+       margin-top: 0.5rem;
+       border-top: 1px solid #bae6fd;
+       padding-top: 0.5rem;
+       background-color: #e0f2fe;
+       border-radius: 0 0 0.5rem 0.5rem;
+       transition: max-height 0.3s ease;
+     }
+     nav ul.show {
+       display: flex;
+       max-height: 500px; /* enough to show all items */
+       overflow: visible;
+     }
+     nav ul li {
+       padding: 0.5rem 0;
+       text-align: center;
+     }
+   }
   </style>
  </head>
  <body class="bg-white text-gray-900 font-sans min-h-screen flex flex-col">
   <!-- Navbar -->
-  <nav class="bg-blue-100 sticky top-0 z-50 rounded-b-md shadow-md px-4 py-2 flex flex-wrap items-center justify-between">
+  <nav>
    <div class="logo">
     <a href="index.html" aria-label="MyDesiTrips Home">
-     <img alt="MyDesiTrips logo with blue and white background and text" src="logo.png" class="h-12 w-12 object-contain"/>
+     <img alt="MyDesiTrips logo with blue and white background and text" src="logo.png"/>
     </a>
    </div>
-   <button aria-label="Toggle menu" class="menu-btn text-blue-700 text-2xl md:hidden" id="menu-btn" type="button">
+   <button aria-label="Toggle menu" class="menu-btn" id="menu-btn" type="button">
     <i class="fas fa-bars"></i>
    </button>
-   <ul id="menu" class="hidden md:flex gap-6 list-none m-0 p-0 items-center">
-    <li><a href="index.html" class="text-blue-700 font-semibold hover:text-orange-500 focus:text-orange-500 focus:outline-none">Home</a></li>
-    <li><a href="packages.html" class="text-blue-700 font-semibold hover:text-orange-500 focus:text-orange-500 focus:outline-none">Packages</a></li>
-    <li><a href="contact.html" class="text-blue-700 font-semibold hover:text-orange-500 focus:text-orange-500 focus:outline-none">Contact</a></li>
-    <li><a href="about.html" class="text-orange-500 font-bold" aria-current="page">About Us</a></li>
+   <ul id="menu" class="flex items-center">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="about.html">About Us</a></li>
     <li class="relative ml-4">
       <button id="login-btn" aria-haspopup="true" aria-expanded="false" aria-controls="login-menu" class="text-blue-700 font-semibold hover:text-orange-500 focus:text-orange-500 focus:outline-none flex items-center gap-2">
         <a href="log.html" class="flex items-center gap-2">
@@ -173,8 +280,11 @@
   <script>
    const menuBtn = document.getElementById('menu-btn');
    const menu = document.getElementById('menu');
+   menuBtn.setAttribute('aria-expanded', 'false');
    menuBtn.addEventListener('click', () => {
-     menu.classList.toggle('hidden');
+     menu.classList.toggle('show');
+     const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+     menuBtn.setAttribute('aria-expanded', String(!expanded));
    });
   </script>
  </body>

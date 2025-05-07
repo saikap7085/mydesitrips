@@ -82,7 +82,7 @@
    nav ul li a.font-semibold.text-orange-500 {
      color: #fb923c;
    }
-   /* Responsive navbar */
+   /* Responsive */
    @media (max-width: 767px) {
      nav .menu-btn {
        display: block;
@@ -92,14 +92,19 @@
        flex-direction: column;
        gap: 0;
        display: none;
+       max-height: 0;
+       overflow: hidden;
        margin-top: 0.5rem;
        border-top: 1px solid #bae6fd;
        padding-top: 0.5rem;
        background-color: #e0f2fe;
        border-radius: 0 0 0.5rem 0.5rem;
+       transition: max-height 0.3s ease;
      }
      nav ul.show {
        display: flex;
+       max-height: 500px; /* enough to show all items */
+       overflow: visible;
      }
      nav ul li {
        padding: 0.5rem 0;
